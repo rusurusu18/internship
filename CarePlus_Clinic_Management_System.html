@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarePlus CMS – Smart Healthcare Management</title>
+  <style>
+    /* ===================== CSS VARIABLES ===================== */
+    :root {
+      --primary:      #0ea5e9;
+      --primary-dark: #0284c7;
+      --accent:       #10b981;
+      --accent-dark:  #059669;
+      --bg:           #f8fafc;
+      --surface:      #ffffff;
+      --text:         #1e293b;
+      --text-muted:   #64748b;
+      --border:       #e2e8f0;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow:       0 4px 16px rgba(14,165,233,.10);
+      --shadow-lg:    0 10px 40px rgba(14,165,233,.14);
+      --radius-sm:    6px;
+      --radius:       12px;
+      --radius-lg:    20px;
+      --transition:   .25s ease;
+    }
+
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    img { max-width: 100%; display: block; }
+    a  { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-dark); }
+    ul { list-style: none; }
+
+    /* ===================== UTILITY ===================== */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-label {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(16,185,129,.12));
+      color: var(--primary);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .section-heading {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      max-width: 560px;
+      font-size: 1.05rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header .section-sub { margin: 0 auto; }
+
+    section { padding: 90px 0; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.75rem;
+      border-radius: var(--radius);
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(14,165,233,.35);
+    }
+    .btn-primary:hover { box-shadow: 0 8px 24px rgba(14,165,233,.45); color:#fff; }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: #fff; }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+    /* ===================== HEADER / NAV ===================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .nav-logo .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+    .nav-logo span.brand { color: var(--primary); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+      border-radius: 2px;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { margin-left: 1rem; }
+
+    /* ===================== HERO ===================== */
+    #home {
+      padding: 0;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #home::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(14,165,233,.12) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      border-radius: 50%;
+    }
+    #home::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(16,185,129,.10) 0%, transparent 70%);
+      bottom: -150px; left: -100px;
+      border-radius: 50%;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      padding: 6rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-content { flex: 1; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(16,185,129,.1);
+      color: var(--accent-dark);
+      border: 1px solid rgba(16,185,129,.25);
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .5; transform: scale(1.4); }
+    }
+    .hero-content h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .hero-content h1 .highlight {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat strong {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .hero-stat span {
+      font-size: .8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .hero-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-graphic {
+      width: 100%;
+      max-width: 460px;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .hg-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 1.5rem;
+      color: #fff;
+    }
+    .hg-header h3 { font-size: 1rem; font-weight: 700; margin-bottom: .25rem; }
+    .hg-header p  { font-size: .8rem; opacity: .85; }
+    .hg-body { padding: 1.5rem; }
+    .hg-metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .hg-metric {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .hg-metric .num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .hg-metric .lbl {
+      font-size: .72rem;
+      color: var(--text-muted);
+      margin-top: .25rem;
+    }
+    .hg-appts { }
+    .hg-appt-label {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .75rem;
+    }
+    .hg-appt {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .6rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: .5rem;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .hg-appt-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-green  { background: var(--accent); }
+    .dot-blue   { background: var(--primary); }
+    .dot-yellow { background: #f59e0b; }
+    .hg-appt-info { flex: 1; }
+    .hg-appt-info strong { display: block; font-size: .8rem; font-weight: 600; }
+    .hg-appt-info span   { font-size: .72rem; color: var(--text-muted); }
+    .hg-appt-time { font-size: .75rem; font-weight: 600; color: var(--primary); }
+
+    /* ===================== ABOUT / MERN ===================== */
+    #about { background: var(--surface); }
+    .mern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .mern-card .icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, rgba(14,165,233,.15), rgba(16,185,129,.15));
+    }
+    .mern-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .6rem; }
+    .mern-card p  { font-size: .9rem; color: var(--text-muted); }
+
+    /* ===================== SERVICES ===================== */
+    #services {
+      background: linear-gradient(180deg, var(--bg) 0%, #f0f9ff 100%);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: rgba(14,165,233,.3); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .service-card ul { padding-left: 1rem; }
+    .service-card ul li {
+      list-style: disc;
+      font-size: .88rem;
+      color: var(--text-muted);
+      margin-bottom: .3rem;
+    }
+
+    /* ===================== DOCTORS TABLE ===================== */
+    #doctors { background: var(--surface); }
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .93rem;
+    }
+    thead {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+    }
+    thead th {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+    tbody tr:nth-child(even) { background: #f8fafc; }
+    tbody tr:hover { background: rgba(14,165,233,.06); }
+    tbody td {
+      padding: 1rem 1.25rem;
+      vertical-align: middle;
+    }
+    .doc-name {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .doc-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .badge-available {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(16,185,129,.1);
+      color: var(--accent-dark);
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+    .badge-available::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .badge-limited {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(245,158,11,.1);
+      color: #b45309;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+    .badge-limited::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: #f59e0b;
+      border-radius: 50%;
+    }
+
+    /* ===================== PATIENT FORM ===================== */
+    #patients {
+      background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+    }
+    .form-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: .45rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: .01em;
+    }
+    .form-group label span { color: #ef4444; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: .7rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: .93rem;
+      color: var(--text);
+      background: var(--bg);
+      font-family: inherit;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14,165,233,.15);
+      background: #fff;
+    }
+    .form-group input:invalid:not(:placeholder-shown) { border-color: #ef4444; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { text-align: center; margin-top: 1.75rem; }
+
+    /* ===================== FEATURES ===================== */
+    #features { background: var(--surface); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      display: flex;
+      gap: 1.25rem;
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .feat-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .feat-icon.blue  { background: rgba(14,165,233,.12); }
+    .feat-icon.green { background: rgba(16,185,129,.12); }
+    .feat-icon.purple{ background: rgba(139,92,246,.12); }
+    .feat-icon.amber { background: rgba(245,158,11,.12); }
+    .feat-icon.rose  { background: rgba(244,63,94,.12);  }
+    .feat-icon.cyan  { background: rgba(6,182,212,.12);  }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .feature-card p  { font-size: .88rem; color: var(--text-muted); }
+
+    /* ===================== LEARNING OUTCOMES ===================== */
+    #learning {
+      background: linear-gradient(180deg, #f0f9ff 0%, var(--bg) 100%);
+    }
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+    }
+    .day-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--primary);
+    }
+    .day-card:nth-child(2) { border-top-color: var(--accent); }
+    .day-card:nth-child(3) { border-top-color: #8b5cf6; }
+    .day-card:nth-child(4) { border-top-color: #f59e0b; }
+    .day-card:nth-child(5) { border-top-color: #f43f5e; }
+    .day-label {
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--primary);
+      margin-bottom: .5rem;
+    }
+    .day-card:nth-child(2) .day-label { color: var(--accent); }
+    .day-card:nth-child(3) .day-label { color: #8b5cf6; }
+    .day-card:nth-child(4) .day-label { color: #f59e0b; }
+    .day-card:nth-child(5) .day-label { color: #f43f5e; }
+    .day-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: .75rem; }
+    .day-card ol { padding-left: 1.1rem; }
+    .day-card ol li {
+      font-size: .85rem;
+      color: var(--text-muted);
+      margin-bottom: .3rem;
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contact { background: var(--surface); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-info h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
+    .contact-info p  { color: var(--text-muted); margin-bottom: 2rem; font-size: .97rem; }
+    .info-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .info-item .ii-icon {
+      width: 44px; height: 44px;
+      background: rgba(14,165,233,.1);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .info-item .ii-text strong { display: block; font-size: .9rem; font-weight: 700; margin-bottom: .2rem; }
+    .info-item .ii-text span   { font-size: .88rem; color: var(--text-muted); }
+    .social-row {
+      display: flex;
+      gap: .75rem;
+      margin-top: 2rem;
+    }
+    .social-link {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .social-link:hover { background: var(--primary); transform: translateY(-2px); }
+    .contact-map {
+      background: linear-gradient(135deg, rgba(14,165,233,.08), rgba(16,185,129,.08));
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      border: 1px solid rgba(14,165,233,.2);
+      text-align: center;
+    }
+    .map-placeholder {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .contact-map h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .contact-map p  { font-size: .9rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem;
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+    .hours-item {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: .6rem .9rem;
+      font-size: .82rem;
+      border: 1px solid var(--border);
+    }
+    .hours-item strong { display: block; font-size: .75rem; color: var(--text-muted); }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--text);
+      color: #94a3b8;
+      padding: 3.5rem 0 1.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .brand-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: .75rem;
+    }
+    .footer-brand p { font-size: .88rem; line-height: 1.6; }
+    .footer-col h4 {
+      color: #fff;
+      font-size: .88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul li { margin-bottom: .5rem; }
+    .footer-col ul li a {
+      color: #94a3b8;
+      font-size: .88rem;
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--primary); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+      font-size: .82rem;
+    }
+    .footer-bottom a { color: #94a3b8; }
+    .footer-bottom a:hover { color: var(--primary); }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .hero-inner { gap: 2.5rem; }
+      .contact-inner { gap: 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+
+      .nav-links { display: none; }
+
+      .hero-inner {
+        flex-direction: column;
+        padding: 3.5rem 0;
+        text-align: center;
+      }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { width: 100%; }
+
+      .mern-grid { grid-template-columns: 1fr; }
+
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+
+      .contact-inner { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-grid .footer-brand { grid-column: 1 / -1; }
+
+      .days-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 1.9rem; }
+      .days-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hg-metric-row { grid-template-columns: 1fr 1fr; }
+      .hours-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="nav-logo">
+        <div class="logo-icon">C+</div>
+        <span>CarePlus <span class="brand">CMS</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        
+        <li><a href="#services">Services</a></li>
+        <li><a href="#doctors">Doctors</a></li>
+        <li><a href="#patients">Patients</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#patients" class="btn btn-primary nav-cta">Register Patient</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<main>
+<section id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Smart Healthcare Management System
+        </div>
+        <h1>
+          Complete Clinic<br>
+          <span class="highlight">Management Solution</span>
+        </h1>
+        <p>Manage patients, appointments, doctors, billing, and healthcare records efficiently — all from one intelligent platform.</p>
+        <div class="hero-btns">
+          <a href="#patients" class="btn btn-primary">&#43; Register Patient</a>
+          <a href="#patients" class="btn btn-outline">&#128197; Book Appointment</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>2,400+</strong>
+            <span>Patients Served</span>
+          </div>
+          <div class="hero-stat">
+            <strong>48</strong>
+            <span>Specialist Doctors</span>
+          </div>
+          <div class="hero-stat">
+            <strong>99.8%</strong>
+            <span>Uptime SLA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <figure class="hero-graphic">
+          <div class="hg-header">
+            <h3>&#128203; Dashboard Overview</h3>
+            <p>Live clinic activity &mdash; Today</p>
+          </div>
+          <div class="hg-body">
+            <div class="hg-metric-row">
+              <div class="hg-metric">
+                <div class="num">38</div>
+                <div class="lbl">Appointments Today</div>
+              </div>
+              <div class="hg-metric">
+                <div class="num">12</div>
+                <div class="lbl">Doctors On Duty</div>
+              </div>
+              <div class="hg-metric">
+                <div class="num">5</div>
+                <div class="lbl">Rooms Available</div>
+              </div>
+              <div class="hg-metric">
+                <div class="num">&#x2714;</div>
+                <div class="lbl">System Healthy</div>
+              </div>
+            </div>
+            <div class="hg-appts">
+              <div class="hg-appt-label">Upcoming Appointments</div>
+              <div class="hg-appt">
+                <span class="hg-appt-dot dot-green"></span>
+                <div class="hg-appt-info">
+                  <strong>Riya Sharma</strong>
+                  <span>General Consultation</span>
+                </div>
+                <span class="hg-appt-time">10:00 AM</span>
+              </div>
+              <div class="hg-appt">
+                <span class="hg-appt-dot dot-blue"></span>
+                <div class="hg-appt-info">
+                  <strong>Arjun Mehta</strong>
+                  <span>Dental Care</span>
+                </div>
+                <span class="hg-appt-time">10:30 AM</span>
+              </div>
+              <div class="hg-appt">
+                <span class="hg-appt-dot dot-yellow"></span>
+                <div class="hg-appt-info">
+                  <strong>Priya Nair</strong>
+                  <span>Pediatrics</span>
+                </div>
+                <span class="hg-appt-time">11:15 AM</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Services</span>
+      <h2 class="section-heading">Comprehensive Clinic Services</h2>
+      <p class="section-sub">End-to-end medical services managed through one unified digital platform.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#129657;</div>
+        <h3>General Consultation</h3>
+        <ul>
+          <li>Primary care &amp; check-ups</li>
+          <li>Chronic disease management</li>
+          <li>Health risk assessments</li>
+          <li>Follow-up scheduling</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#129463;</div>
+        <h3>Dental Care</h3>
+        <ul>
+          <li>Cleaning &amp; scaling</li>
+          <li>Cavity treatment</li>
+          <li>Orthodontics</li>
+          <li>Oral surgery</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128118;</div>
+        <h3>Pediatrics</h3>
+        <ul>
+          <li>Newborn &amp; infant care</li>
+          <li>Growth monitoring</li>
+          <li>Childhood vaccinations</li>
+          <li>Development screening</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128300;</div>
+        <h3>Laboratory Testing</h3>
+        <ul>
+          <li>Blood work &amp; CBC</li>
+          <li>Urine analysis</li>
+          <li>Pathology reports</li>
+          <li>Results via patient portal</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128137;</div>
+        <h3>Vaccination</h3>
+        <ul>
+          <li>Routine immunisations</li>
+          <li>Travel vaccines</li>
+          <li>Flu &amp; COVID boosters</li>
+          <li>Vaccination records</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128657;</div>
+        <h3>Emergency Care</h3>
+        <ul>
+          <li>24/7 emergency triage</li>
+          <li>Trauma &amp; acute care</li>
+          <li>Critical stabilisation</li>
+          <li>Ambulance coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DOCTORS ===================== -->
+<section id="doctors">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Team</span>
+      <h2 class="section-heading">Meet Our Specialist Doctors</h2>
+      <p class="section-sub">Experienced healthcare professionals committed to patient-centred care.</p>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Doctor ID</th>
+            <th>Doctor Name</th>
+            <th>Department</th>
+            <th>Specialisation</th>
+            <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>#DR-001</strong></td>
+            <td>
+              <div class="doc-name">
+                <div class="doc-avatar">AS</div>
+                <div>
+                  <strong>Dr. Ananya Singh</strong><br>
+                  <small style="color:var(--text-muted)">MBBS, MD</small>
+                </div>
+              </div>
+            </td>
+            <td>General Medicine</td>
+            <td>Internal Medicine</td>
+            <td><span class="badge-available">Available</span></td>
+          </tr>
+          <tr>
+            <td><strong>#DR-002</strong></td>
+            <td>
+              <div class="doc-name">
+                <div class="doc-avatar">RK</div>
+                <div>
+                  <strong>Dr. Rahul Kapoor</strong><br>
+                  <small style="color:var(--text-muted)">BDS, MDS</small>
+                </div>
+              </div>
+            </td>
+            <td>Dental Care</td>
+            <td>Orthodontics</td>
+            <td><span class="badge-available">Available</span></td>
+          </tr>
+          <tr>
+            <td><strong>#DR-003</strong></td>
+            <td>
+              <div class="doc-name">
+                <div class="doc-avatar">PM</div>
+                <div>
+                  <strong>Dr. Priya Menon</strong><br>
+                  <small style="color:var(--text-muted)">MBBS, DCH</small>
+                </div>
+              </div>
+            </td>
+            <td>Pediatrics</td>
+            <td>Child Development</td>
+            <td><span class="badge-limited">Limited Slots</span></td>
+          </tr>
+          <tr>
+            <td><strong>#DR-004</strong></td>
+            <td>
+              <div class="doc-name">
+                <div class="doc-avatar">VR</div>
+                <div>
+                  <strong>Dr. Vikram Rao</strong><br>
+                  <small style="color:var(--text-muted)">MBBS, DNB</small>
+                </div>
+              </div>
+            </td>
+            <td>Emergency Care</td>
+            <td>Trauma Surgery</td>
+            <td><span class="badge-available">Available</span></td>
+          </tr>
+          <tr>
+            <td><strong>#DR-005</strong></td>
+            <td>
+              <div class="doc-name">
+                <div class="doc-avatar">SJ</div>
+                <div>
+                  <strong>Dr. Sneha Joshi</strong><br>
+                  <small style="color:var(--text-muted)">MBBS, DCP</small>
+                </div>
+              </div>
+            </td>
+            <td>Laboratory</td>
+            <td>Clinical Pathology</td>
+            <td><span class="badge-limited">Limited Slots</span></td>
+          </tr>
+          <tr>
+            <td><strong>#DR-006</strong></td>
+            <td>
+              <div class="doc-name">
+                <div class="doc-avatar">TN</div>
+                <div>
+                  <strong>Dr. Tarun Nair</strong><br>
+                  <small style="color:var(--text-muted)">MBBS, MD</small>
+                </div>
+              </div>
+            </td>
+            <td>Vaccination</td>
+            <td>Preventive Medicine</td>
+            <td><span class="badge-available">Available</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PATIENT REGISTRATION ===================== -->
+<section id="patients">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Patient Portal</span>
+      <h2 class="section-heading">Patient Registration</h2>
+      <p class="section-sub">Fill in your details to register and book an appointment with one of our specialists.</p>
+    </div>
+    <div class="form-wrapper">
+      <form action="#" method="post" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullname">Full Name <span>*</span></label>
+            <input type="text" id="fullname" name="fullname" placeholder="e.g. Riya Sharma" required minlength="3">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address <span>*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number <span>*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+977 98XXXXXXXX" pattern="[+]?[0-9\s\-]{7,15}" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Age <span>*</span></label>
+            <input type="number" id="age" name="age" placeholder="e.g. 29" min="1" max="120" required>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender <span>*</span></label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Select gender</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="non-binary">Non-Binary</option>
+              <option value="prefer-not">Prefer not to say</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dept">Department <span>*</span></label>
+            <select id="dept" name="dept" required>
+              <option value="" disabled selected>Select department</option>
+              <option value="general">General Consultation</option>
+              <option value="dental">Dental Care</option>
+              <option value="pediatrics">Pediatrics</option>
+              <option value="laboratory">Laboratory Testing</option>
+              <option value="vaccination">Vaccination</option>
+              <option value="emergency">Emergency Care</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="appt">Appointment Date <span>*</span></label>
+            <input type="date" id="appt" name="appt" required>
+          </div>
+          <div class="form-group">
+            <label for="appt-time">Preferred Time</label>
+            <input type="time" id="appt-time" name="appt-time">
+          </div>
+          <div class="form-group full">
+            <label for="address">Address <span>*</span></label>
+            <input type="text" id="address" name="address" placeholder="Street, City, Country" required>
+          </div>
+          <div class="form-group full">
+            <label for="symptoms">Symptoms / Notes</label>
+            <textarea id="symptoms" name="symptoms" placeholder="Describe your symptoms or any notes for the doctor..."></textarea>
+          </div>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary" style="font-size:1rem; padding:.85rem 2.5rem;">
+            &#128203; Submit Registration
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES ===================== -->
+<section id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Platform Features</span>
+      <h2 class="section-heading">Everything You Need to Run a Modern Clinic</h2>
+      <p class="section-sub">Powerful tools built to reduce admin burden and improve patient outcomes.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feat-icon blue">&#128196;</div>
+        <div>
+          <h3>Patient Records</h3>
+          <p>Centralised electronic health records with full medical history, prescriptions, and lab results accessible in seconds.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon green">&#128197;</div>
+        <div>
+          <h3>Appointment Scheduling</h3>
+          <p>Smart calendar management with automated reminders, conflict detection, and real-time slot availability.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon purple">&#128104;&#8203;&#9877;&#65039;</div>
+        <div>
+          <h3>Doctor Management</h3>
+          <p>Track doctor schedules, specialisations, leave requests, and performance metrics from one panel.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon amber">&#128184;</div>
+        <div>
+          <h3>Billing System</h3>
+          <p>Generate invoices, track payments, apply insurance claims, and produce financial summaries automatically.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon rose">&#128202;</div>
+        <div>
+          <h3>Reports &amp; Analytics</h3>
+          <p>Visual dashboards showing patient trends, revenue graphs, appointment loads, and department KPIs.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon cyan">&#128249;</div>
+        <div>
+          <h3>Online Consultation</h3>
+          <p>Secure video consultations, digital prescriptions, and chat support directly integrated into the platform.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-heading">We're Here When You Need Us</h2>
+        <p>Reach out for appointments, medical queries, or support. Our team responds within 24 hours.</p>
+        <div class="info-items">
+          <div class="info-item">
+            <div class="ii-icon">&#128205;</div>
+            <div class="ii-text">
+              <strong>Clinic Address</strong>
+              <span>CarePlus Medical Centre, Durbar Marg,<br>Kathmandu 44600, Nepal</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="ii-icon">&#128222;</div>
+            <div class="ii-text">
+              <strong>Phone Number</strong>
+              <span>+977 01-4567890 &nbsp;|&nbsp; +977 98012XXXXX</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="ii-icon">&#128140;</div>
+            <div class="ii-text">
+              <strong>Email Address</strong>
+              <span>info@careplus-cms.np &nbsp;|&nbsp; support@careplus-cms.np</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="ii-icon">&#128336;</div>
+            <div class="ii-text">
+              <strong>Working Hours</strong>
+              <span>Mon–Fri: 8:00 AM – 8:00 PM &nbsp;|&nbsp; Sat–Sun: 9:00 AM – 5:00 PM</span>
+            </div>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="#" class="social-link" aria-label="Facebook">&#128100;</a>
+          <a href="#" class="social-link" aria-label="Twitter">&#128038;</a>
+          <a href="#" class="social-link" aria-label="Instagram">&#128247;</a>
+          <a href="#" class="social-link" aria-label="LinkedIn">&#128203;</a>
+        </div>
+      </div>
+
+      <aside class="contact-map">
+        <div class="map-placeholder">&#127973;</div>
+        <h3>CarePlus Medical Centre</h3>
+        <p>Durbar Marg, Kathmandu, Nepal</p>
+        <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-primary">
+          &#128506; Open in Maps
+        </a>
+        <div class="hours-grid">
+          <div class="hours-item">
+            <strong>Monday – Friday</strong>
+            8:00 AM – 8:00 PM
+          </div>
+          <div class="hours-item">
+            <strong>Saturday</strong>
+            9:00 AM – 5:00 PM
+          </div>
+          <div class="hours-item">
+            <strong>Sunday</strong>
+            9:00 AM – 5:00 PM
+          </div>
+          <div class="hours-item">
+            <strong>Emergency</strong>
+            24 / 7 Always Open
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">&#10133; CarePlus CMS</div>
+        <p>Smart Healthcare Management for Modern Clinics. Streamlining appointments, patient records, billing, and healthcare operations.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          
+          <li><a href="#services">Services</a></li>
+          <li><a href="#doctors">Doctors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">General Consultation</a></li>
+          <li><a href="#services">Dental Care</a></li>
+          <li><a href="#services">Pediatrics</a></li>
+          <li><a href="#services">Laboratory</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#contact">Find Us</a></li>
+          <li><a href="#patients">Book Appointment</a></li>
+          <li><a href="mailto:info@careplus-cms.np">Email Us</a></li>
+          <li><a href="tel:+97714567890">Call Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CarePlus Clinic Management System. All rights reserved.</p>
+      <nav aria-label="Footer legal links">
+        <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp;
+        <a href="#">Terms of Service</a> &nbsp;&middot;&nbsp;
+        <a href="#">Sitemap</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

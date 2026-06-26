@@ -55,3 +55,35 @@ let hasLicense= false;
 console.log(isAdult && hasLicense); //logical AND
 console.log(isAdult || hasLicense); //logical OR
 console.log(!isAdult); //logical NOT
+
+//assignment operators
+// =, +=, -=, *=, /=, %=
+let c= 5;
+c += 3; // equivalent to c = c + 3
+console.log(c);
+
+//conditons
+//if else
+let age= 22;
+if (age >= 18) {
+    console.log("Elegible to vote.");
+} else {
+    console.log("Not elegible to vote.");
+}
+
+//switch case
+let day= 3;
+switch (day) {
+    case 1:     
+    console.log("Sunday");
+    break;
+    case 2:
+    console.log("Monday");
+    break;  
+    case 3:
+    console.log("Tuesday");
+    break;
+    case 4:
+    console.log("Wednesday");
+    break;
+}

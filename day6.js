@@ -92,7 +92,7 @@ if (score >= 90) {
 }
 
 //switch case
-let day= 3;
+let day= Number(prompt("Enter a number between 1 and 4:"));
 switch (day) {
     case 1:     
     console.log("Sunday");
@@ -106,4 +106,6 @@ switch (day) {
     case 4:
     console.log("Wednesday");
     break;
+    default:
+    console.log("Invalid day");
 }

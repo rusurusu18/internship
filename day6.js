@@ -87,7 +87,7 @@ if (score >= 90) {
     console.log("Excellent");   
 } else if (score >= 75) {
     console.log("Good");
-} else (score >= 60) {
+} else if (score >= 60) {
     console.log("Average");
 }
 

@@ -33,3 +33,37 @@ console.log(fruits); // ["Mango", "Grapes", "Pineapple", "Apple"]
 fruits.forEach(function(fruit, index) {
     console.log(index + ": " + fruit);
 });
+
+
+//map : helps us to create a new array by applying a function to each element of the original array
+//for length of each fruit
+let fruitLengths = fruits.map(function(fruit) {
+    return fruit.length;
+});
+console.log(fruitLengths); // [5, 6, 9, 5]
+
+
+//for uppercase of each fruit
+let fruitUpperCase = fruits.map(function(fruit) {
+    return fruit.toUpperCase();
+});
+console.log(fruitUpperCase); // ["MANGO", "GRAPES", "PINEAPPLE", "APPLE"]
+
+//filter : helps us to create a new array with elements that satisfy the condition
+let number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let evenNumber = number.filter(function(num) {
+    return num % 2 == 0; // even numbers
+});
+console.log(evenNumber); // [2, 4, 6, 8, 10]
+
+
+let oddnumber = number.filter(function(num) {
+    return num % 2 !== 0; // for odd number
+});
+console.log(oddnumber); 
+
+//reduce : helps us to reduce the array to a single value by applying a function to each element of the array
+let totalnum=number.reduce(function(total, num) {
+    return total + num;
+},0);
+console.log(totalnum);

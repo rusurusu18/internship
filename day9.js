@@ -63,7 +63,8 @@ let oddnumber = number.filter(function(num) {
 console.log(oddnumber); 
 
 //reduce : helps us to reduce the array to a single value by applying a function to each element of the array
-let totalnum=number.reduce(function(total, num) {
-    return total + num;
-},0);
+let totalnum=number.reduce(function(initial, num) {
+    return initial + num; //num is the current value meaning (0 + 1)...like wise (1 + 2) and so on
+},0); // assigned initial value of initial as 0
+
 console.log(totalnum);

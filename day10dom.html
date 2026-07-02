@@ -6,19 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 id="first" style="background-color:brown; color:beige">Hello, World!</h1>
-
-    <script>
-        let heading = document.getElementById("first")
-        heading.innerHTML = "Welcome to DOM Manipulation"
-        heading.style.backgroundColor = "blue"
-   
-    </script>
-
-</body>
-</html>
-
-<!-- dom(document object model) is a programming interface that represents the html document as a tree objects -->
+    <!-- dom(document object model) is a programming interface that represents the html document as a tree objects -->
 <!-- javascript uses dom to change the text, change colors, add html elements read input values and many more. -->
 
 <!-- common methods to access html elements are :
@@ -27,3 +15,57 @@
  getElementByTagName()      selects the html elements by their tag name
  querySelector()    selects the first matching element
  querySelectorAll()   selects all matching elements -->
+
+
+
+    <!-- <h1 id="h1id" class="first" style="background-color:brown; color:beige">Hello, World!</h1>
+    <h1 class="second">This is my second heading</h1> -->
+
+    <p>html</p>
+    <p>css</p>
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVwGMLVhhKX2WbOpmbGhmsfkSi8rkHzMyGSk6qkLLDOQ&s=10" alt="image" width="200px" height="200px">
+
+    <script>
+        //let heading = document.getElementById("first")
+        //heading.innerHTML = "Welcome to DOM Manipulation"
+       // heading.style.backgroundColor = "blue"
+
+        //if it was className
+        //let heading= document.getElementsByClassName("first")
+        //heading[0].innerHTML = "Welcome to DOM Manipulation"
+       // heading[0].style.backgroundColor = "blue"
+   
+        //if it was tagName
+        //let heading= document.getElementsByTagName("h1")
+        //heading[0].innerHTML = "Welcome to DOM Manipulation"
+
+        //access the element by querySelector
+        //let heading = document.querySelector("h1"); //aabo h1 jun first ma xa teslai matra change garxa also can use id(#) and class name(.) 
+        //heading.innerHTML = "Hello, DOM Manipulation"
+
+        //querySelectorAll() selects all matching elements
+        //let paragraphs = document.querySelectorAll("h1");
+        //paragraphs[1].innerHTML = "This is my heading changed by querySelectorAll()"
+        //paragraphs[1].style.backgroundColor = "blue"        //jun index deko xa teslai matra garxa
+
+        let paragraphs = document.querySelectorAll("p");
+        for(let i=0; i<paragraphs.length; i++){
+            paragraphs[i].style.backgroundColor = "blue";
+            paragraphs[i].style.color = "white";
+            paragraphs[i].innerHTML = "This is my paragraph changed by querySelectorAll()";
+        }
+
+        let image = document.getElementsByTagName("img");
+        image[0].src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMGEiGGm6dPSJwJ5zU1h-iD8ff6tpQVRUOUgOQSqpogQ&s=10" ;
+        image[0].alt = "new image";
+
+
+
+        
+    </script>
+
+</body>
+</html>
+
+

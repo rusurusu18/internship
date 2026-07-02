@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="first" style="background-color:brown; color:beige">Hello, World!</h1>
+
+    <script>
+        let heading = document.getElementById("first")
+        heading.innerHTML = "Welcome to DOM Manipulation"
+        heading.style.backgroundColor = "blue"
+   
+    </script>
+
+</body>
+</html>
+
+<!-- dom(document object model) is a programming interface that represents the html document as a tree objects -->
+<!-- javascript uses dom to change the text, change colors, add html elements read input values and many more. -->
+
+<!-- common methods to access html elements are :
+ getElementById () selects the html elements by their ID
+ getElementByClassName()  selects the html elements by their class name
+ getElementByTagName()      selects the html elements by their tag name
+ querySelector()    selects the first matching element
+ querySelectorAll()   selects all matching elements -->

@@ -26,6 +26,8 @@
 
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVwGMLVhhKX2WbOpmbGhmsfkSi8rkHzMyGSk6qkLLDOQ&s=10" alt="image" width="200px" height="200px">
 
+    <br>
+    <button onclick="showAlert()" onmouseover="firstmouseover()">Click me</button>
     <script>
         //let heading = document.getElementById("first")
         //heading.innerHTML = "Welcome to DOM Manipulation"
@@ -61,9 +63,27 @@
         image[0].alt = "new image";
 
 
+        function showAlert(){
+            alert("Button clicked!");
+        }
 
-        
+        function firstmouseover(){
+            let heading = document.querySelector("button");
+            heading.innerHTML = "Mouse is over the heading";
+            heading.style.backgroundColor = "blue";
+        }
+
     </script>
+
+    <!--event and event listner-->
+  
+    <!--event is an action that occurs in browser or web page like click, mouseover, keydown, etc.-->
+    <!--click() occurs when the user clicks on an element-->
+    <!--mouseover() occurs when the user moves the mouse over an element-->
+    <!--onChange() occurs when the value of an element is changed-->
+    <!--onKeyDown() occurs when the user presses a key on the keyboard-->
+    <!--onSubmit() occurs when the user submits a form-->
+    <!--onload() occurs when the web page is loaded-->
 
 </body>
 </html>

@@ -28,6 +28,11 @@
 
     <br>
     <button onclick="showAlert()" onmouseover="firstmouseover()">Click me</button>
+
+
+
+    <button class="first">Hover over me</button>
+
     <script>
         //let heading = document.getElementById("first")
         //heading.innerHTML = "Welcome to DOM Manipulation"
@@ -73,9 +78,16 @@
             heading.style.backgroundColor = "blue";
         }
 
+
+        //event listener
+        let button = document.querySelector(".first");
+        button.addEventListener("click", function(){
+            alert("Button clicked using event listener!");
+        });
+
     </script>
 
-    <!--event and event listner-->
+    <!--event and event listener-->
   
     <!--event is an action that occurs in browser or web page like click, mouseover, keydown, etc.-->
     <!--click() occurs when the user clicks on an element-->

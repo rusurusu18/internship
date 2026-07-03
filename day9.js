@@ -68,3 +68,8 @@ let totalnum=number.reduce(function(initial, num) {
 },0); // assigned initial value of initial as 0
 
 console.log(totalnum);
+
+
+//replace : helps us to replace a specific element in the array with a new value
+let replaceelement = fruits.replace("Apple","Kiwi");
+console.log(replaceelement); // ["Mango", "Grapes", "Pineapple", "Kiwi"]

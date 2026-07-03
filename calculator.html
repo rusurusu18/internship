@@ -118,6 +118,20 @@
             display.value = "Error";
         }
     }
+
+    //keyboard support
+    document.addEventListener('keydown', function(event) {
+        const key = event.key;
+        if (!isNaN(key) || key === '.' || key === '+' || key === '-' || key === '*' || key === '/' || key === '%') {
+            appendToDisplay(key);
+        } else if (key === 'Enter') {
+            calculate();
+        } else if (key === 'Backspace') {
+            removeLastCharacter();
+        } else if (key === 'Escape') {
+            clearDisplay();
+        }
+    });
     </script>
 
 </body>

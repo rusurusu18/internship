@@ -99,7 +99,7 @@
             display.value = display.value.slice(0, -1);
         }
 
-       function clearDisplay() {
+        function clearDisplay() {
         document.getElementById('display').value = '';
         }
     
@@ -119,18 +119,18 @@
         }
     }
 
-    //keyboard support
-    document.addEventListener('keydown', function(event) {
-        const key = event.key;
-        if (!isNaN(key) || key === '.' || key === '+' || key === '-' || key === '*' || key === '/' || key === '%') {
+        //keyboard support
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            if (!isNaN(key) || key === '.' || key === '+' || key === '-' || key === '*' || key === '/' || key === '%') {
             appendToDisplay(key);
-        } else if (key === 'Enter') {
+             } else if (key === 'Enter') {
             calculate();
-        } else if (key === 'Backspace') {
+             } else if (key === 'Backspace') {
             removeLastCharacter();
-        } else if (key === 'Escape') {
-            clearDisplay();
-        }
+             } else if (key === 'Escape') {
+              clearDisplay();
+            }
     });
     </script>
 

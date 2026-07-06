@@ -37,7 +37,7 @@ function getdatas(){
 
 //syntax using promise resolved the statement
 let promise=new Promise(function(resolve,reject){
-    let login = false;
+    let login = true;
     if (login){
         resolve("login successful");
     } else {
@@ -51,4 +51,21 @@ promise.then(function(result){
 .catch(function(error){
     console.log(error);
 })
+
 //async and await
+//async is a keyword that used to declare a function that returns a promise and allows the use of await inside it.
+//await pauses the execution if an aync function until the promise cant resolve or reject
+
+function getdata(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(function(){
+            resolve("data fetched");
+        },1000)
+    })
+}
+
+async function display(){
+    let result=await getdata();
+    console.log(result);
+}   
+display();

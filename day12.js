@@ -18,6 +18,9 @@
 //let url = https://localhost/5000/api
 //basic get request
 
+
+//---------------------------------------------------------------------------------------------------------//
+//get request perform
 fetch("https://jsonplaceholder.typicode.com/users") //sending the request to the server
 .then (function(response){
 
@@ -29,6 +32,57 @@ fetch("https://jsonplaceholder.typicode.com/users") //sending the request to the
 
 
 //dispalys the data 
+//.then (function(data){
+//    console.log(data);
+// })
+
+
+
 .then (function(data){
-    console.log(data);
+
+    let output=""
+    data.foEach(function(user){
+
+     output+='<li>${user.name}</li>';
+     });
+    document.getElementByID("users").innerHTML=output;
 })
+
+//fetch using the async and await
+
+async function getUsers(){
+    let response = await fetch("https://jsonplaceholder.typicode.com/users") //receives the server response
+    let users = await response.json()
+    console.log(users)
+}
+
+getUsers()
+
+//------------------------------------------------------------------------------------------------------------------------------------------//
+
+//post request perform(POST) user sends data
+
+fetch("https://jsonplaceholder.typicode.com/users", {
+    method:"POST",
+    headers:{   // headers provide the extra information about the request
+        "Content-Type": "application/json"  //ma json format ma data lei send gardai xu    
+    },
+
+    body:JSON.stringify({   // converts the js object into the json string 
+        title:"javascript learnig or fetch post requests learning",
+        body:"learning fetch api",
+        userId:1      
+    })
+})
+
+.then(function(response){
+    return response.json();
+})
+
+.then(function(data){
+    console.log(data)
+})
+
+
+//---------------------------------------------------------------------------------//
+//PUT

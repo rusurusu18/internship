@@ -15,3 +15,20 @@
 // - frondend needs data from the backend
 // - without this our website cannot communicate with the server
 
+//let url = https://localhost/5000/api
+//basic get request
+
+fetch("https://jsonplaceholder.typicode.com/users") //sending the request to the server
+.then (function(response){
+
+    //receives the server response
+    console.log("loading data...");
+
+    return response.json(); //converts the json into a javascript object
+})
+
+
+//dispalys the data 
+.then (function(data){
+    console.log(data);
+})

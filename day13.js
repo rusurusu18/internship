@@ -69,4 +69,17 @@ export default function substract(a,b){
 // very fast setup
 // hot module replacement
 // lightweight
- 
+
+
+//realdom vs virtual dom
+//Real dom is the actual dom created and managed by the vrowser.
+//whenever javascript changes something the browser updates the real dom
+//virtual dom is a lightweight javascript representation(copy)
+// of thereal DOM maintained by react.
+
+//component like exammple button change
+//virtual dom(copy of real dom)updates
+//compare with previous virtual dom
+//find diffrences
+//updates only changes elements
+//real dom 

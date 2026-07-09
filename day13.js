@@ -83,3 +83,6 @@ export default function substract(a,b){
 //find diffrences
 //updates only changes elements
 //real dom 
+
+
+//jsx(javascript XML) HTML + (javascript )is a syntax extension for javascript that allows us to write HTML-like code inside jabascript

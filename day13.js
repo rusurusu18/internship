@@ -51,3 +51,22 @@ export default function substract(a,b){
 
 //It is a javascript library developed by Meta(facebook) for building
 // fast, interactive and reusable user interface(UI), especially single page applications
+
+//features of react
+//-component-Based architecture
+//-virtual DOM
+//-reusable component
+//-fast performance
+
+
+//What is SPA(single page applications)?
+//--It loads on html page and updates only the necessary parts of the page 
+//without a full page refresh
+
+//vite is a modern frontend build tool used to create react projects quickly 
+
+//advantages of vite
+// very fast setup
+// hot module replacement
+// lightweight
+ 

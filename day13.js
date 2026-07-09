@@ -85,4 +85,14 @@ export default function substract(a,b){
 //real dom 
 
 
-//jsx(javascript XML) HTML + (javascript )is a syntax extension for javascript that allows us to write HTML-like code inside jabascript
+//jsx(javascript XML) HTML + (javascript )is a syntax extension for javascript that allows us to write HTML-like code inside javascript
+
+//components is a reusable piece of code 
+//why 
+//-reusable 
+//-cleaner code
+//-easy maintainance
+//-faster development
+//-better organization
+
+

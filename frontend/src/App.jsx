@@ -2,7 +2,7 @@ import React, { useState } from 'react' //rafce: short form for boiler template
 import User from './User.jsx'
 
 const App = () => {
-  const[count,setCount]=useState(0)
+  // const[count,setCount]=useState(0)
   function increase(){
     setCount(count+1);
   }

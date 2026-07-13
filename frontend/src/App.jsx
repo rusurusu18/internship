@@ -1,23 +1,25 @@
-import React, { useState } from 'react' //rafce: short form for boiler template
-import User from './User.jsx'
-
-const App = () => {
-  // const[count,setCount]=useState(0)
-  function increase(){
-    setCount(count+1);
-  }
-  return (
-    <>
-{/* 
-      <User name="Rushu" age={21} college="IIC" Semester={5} />
-      <User skills={ ["HTML","CSS","JS"] } /> */}
-
-      <h1>{count}</h1>
-      <button onClick={increase} className='bg-red-500 text-blue-800'>increment</button>
+import React from 'react'
+import { useState } from 'react'
+// import React from 'react'
+// import { useState } from 'react'
 
 
-    </>
-  )
-}
+// const App = () => {
+//   const [count,setCount]=useState(1)
+//   function increase(){
+//     setCount(count+1);
+//   }
+//   return (
+//     <>
+//     <h1>{count}</h1>
+//     <button onClick={increase} className='bg-amber-800 text-blue-800'>increment</button>
+    
+      
+//     </>
+//   )
+// }
+/// example of the useEffect
+// export default App
+// setIntervale is used to repeatedly execute a function or a code snippet at fixed time intervals
 
-export default App
+import React, { useEffect, useState } from 'react'

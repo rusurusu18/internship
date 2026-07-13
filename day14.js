@@ -39,5 +39,35 @@ const [value, setValue] = useState(0)
 
 
 //useState in React
-//it is a React Hook that lets us to add state to functional components
+//it is a React Hook that lets us to add state to functional components it returns a state variable and a function to update that state
+
+// how its works 
+// initailize the state    useState() 0
+//update the state using the setState/setCount() 1
+// components re-renders with new state 1
+
+// useEffect 
+
+ //it is a react hook that let us perform side effects in functional components
+ //types of the useeffect     
+ //1 not dependencies array    runs after every render (mounted and updated)
+ useEffect(()={
+
+ });
+
+ //2 empty dependencies array []   runs only once after the component is mounted 
+ // useEffect()=>{
+
+ //},[];
+
+ //3 with dependencies array[deps]  runs when the specified dependencies changes
+
+
+ // usecases of the useEffect
+
+ //1 fetching data from apis 
+ //2 updating the document title or meta data
+ //3 controllig timers (settimeout/setinterval())
+
+
 

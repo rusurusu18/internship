@@ -69,6 +69,8 @@
 
 import React from 'react'
 import UserContext from './context/userContext'
+import Navbar from './components/Navbar'
+
 
 const App = () => {
     const name="Rushu"

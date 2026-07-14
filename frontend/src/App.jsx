@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+// import React from 'react'
+// import { useState } from 'react'
 // import React from 'react'
 // import { useState } from 'react'
 
@@ -22,18 +22,41 @@ import { useState } from 'react'
 // export default App
 // setIntervale is used to repeatedly execute a function or a code snippet at fixed time intervals
 
-import React, { useEffect, useState } from 'react'
+//import React, { useEffect, useState } from 'react'
 
 
-const App= ()=>{
-    useEffect(()=>{
-        console.log("component mounted")
-    },[])
-    return(
-        <>
-        <h1>hello mounting</h1>
-        </>
-    )
+// const App= ()=>{
+//     const[count,setCount]=useState(0)
+//     useEffect(()=>{
+//         console.log("component mounted")
+//         return()=>{
+//             console.log("component removed")
+//         }
+//     },[count])
+//     return(
+//         <>
+//         <h1>hello mounting</h1>
+//         <button onClick={()=>{setCount(count+1)}}>Increment</button>
+//         </>
+//     )
+// }
+
+// export default App
+
+import React, { useState } from 'react'
+import Timer from "./components/Timer"
+
+
+const App = () => {
+  const[showerTimer,setShowerTimer]=useState(true)
+  return (
+    <>
+      <h1>React Lifecycle with timer</h1>
+      <button onClick={()=>{setShowerTimer(!showerTimer)}}>{showerTimer ? "stop Timer" : "start Timer"}</button>
+      <hr />
+      {showerTimer && <Timer />}
+    </>
+  )
 }
 
 export default App

@@ -14,6 +14,9 @@ function App(){
 2 Updating
 It is the phase updating happens whenever state changes , props change and context changes 
 
+3 Unmounting
+It means the component is removed from the screen 
+
 
 API fetching 
 useContext

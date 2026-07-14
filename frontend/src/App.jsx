@@ -43,20 +43,43 @@
 
 // export default App
 
-import React, { useState } from 'react'
-import Timer from "./components/Timer"
 
+
+//Example of Life cycle 
+
+// import React, { useState } from 'react'
+// import Timer from "./components/Timer"
+
+
+// const App = () => {
+//   const[showerTimer,setShowerTimer]=useState(true)
+//   return (
+//     <>
+//       <h1>React Lifecycle with timer</h1>
+//       <button onClick={()=>{setShowerTimer(!showerTimer)}}>{showerTimer ? "stop Timer" : "start Timer"}</button>
+//       <hr />
+//       {showerTimer && <Timer />}
+//     </>
+//   )
+// }
+
+// export default App
+
+
+
+import React from 'react'
+import UserContext from './context/userContext'
 
 const App = () => {
-  const[showerTimer,setShowerTimer]=useState(true)
+    const name="Rushu"
   return (
-    <>
-      <h1>React Lifecycle with timer</h1>
-      <button onClick={()=>{setShowerTimer(!showerTimer)}}>{showerTimer ? "stop Timer" : "start Timer"}</button>
-      <hr />
-      {showerTimer && <Timer />}
-    </>
+    <UserContext.Provider value={name} >
+      <Navbar />
+
+    </UserContext.Provider>
   )
 }
 
 export default App
+
+//UserContext makes the user available to every components inside 

@@ -23,3 +23,17 @@ import { useState } from 'react'
 // setIntervale is used to repeatedly execute a function or a code snippet at fixed time intervals
 
 import React, { useEffect, useState } from 'react'
+
+
+const App= ()=>{
+    useEffect(()=>{
+        console.log("component mounted")
+    },[])
+    return(
+        <>
+        <h1>hello mounting</h1>
+        </>
+    )
+}
+
+export default App

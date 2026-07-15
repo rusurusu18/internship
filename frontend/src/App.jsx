@@ -67,21 +67,86 @@
 
 
 
-import React from 'react'
-import UserContext from './context/userContext'
-import Navbar from './components/Navbar'
+//----useContext----//
 
+// import React from 'react'
+// import UserContext from './context/userContext'
+// import Navbar from './components/Navbar'
+
+
+// const App = () => {
+//     const name="Rushu"
+//   return (
+//     <UserContext.Provider value={name} >
+//       <Navbar />
+
+//     </UserContext.Provider>
+//   )
+// }
+
+// export default App
+
+//UserContext makes the user available to every components inside 
+
+//------Fetch-API-Using-React----//
+
+//____CRUD__OPERATIONS____//
+
+import React, { useState, useEffect } from 'react'
 
 const App = () => {
-    const name="Rushu"
-  return (
-    <UserContext.Provider value={name} >
-      <Navbar />
+  const API = "https://jsonplaceholder.typicode.com/posts"
+  const [posts, setPosts] = useState([])
+  const [title, setTitle] = useState("")
 
-    </UserContext.Provider>
+  // Get(Read)
+  const getposts = async () => {
+    try {
+      const response = await fetch(API)
+      const data = await response.json()
+      setPosts(data.slice(0, 10))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getposts()
+  }, [])
+
+  // Post (Create)
+  const addPost = async () => {
+    if (!title) {
+      return
+    }
+    const response = await fetch(API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: title,
+        body: "learning featch api using react.js"
+      })
+    })
+    const data = await response.json()
+    setPosts([data, ...posts])
+    setTitle("")
+  }
+
+  return (
+    <>
+      <div style={{ padding: "20px" }}></div>
+    </>
   )
 }
 
 export default App
 
-//UserContext makes the user available to every components inside 
+
+
+
+
+
+//----useMemo-----//
+

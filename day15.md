@@ -39,8 +39,10 @@ Step 2 create provider for available the data inside
 Step3 creating consumer to consume the data
 
 
-useMemo
-useRef
+___________useMemo_______
+
+
+___________useRef________
 
 
 

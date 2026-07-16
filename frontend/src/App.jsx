@@ -92,125 +92,216 @@
 
 //____CRUD__OPERATIONS____//
 
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 
-const API = 'https://jsonplaceholder.typicode.com/posts'
+// const API = 'https://jsonplaceholder.typicode.com/posts'
+
+// const App = () => {
+//   const [posts, setPosts] = useState([])
+//   const [title, setTitle] = useState('')
+//   const [body, setBody] = useState('')
+
+//   const getPosts = async () => {
+//     try {
+//       const response = await fetch(API)
+//       const data = await response.json()
+//       setPosts(data.slice(0, 10))
+//     } catch (error) {
+//       console.error(error)
+//     }
+//   }
+
+//   useEffect(() => {
+//     getPosts()
+//   }, [])
+
+//   const addPost = async () => {
+//     if (!title) {
+//       return
+//     }
+
+//     try {
+//       const response = await fetch(API, {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//           title,
+//          body
+//         })
+//       })
+
+//       const data = await response.json()
+//       setPosts([data, ...posts])
+//       setTitle('')
+//       setBody('')
+//     } catch (error) {
+//       console.error(error)
+//     }
+//   }
+
+//   // performing update "PUT"
+//   const updatePost = (post) => {
+//     fetch(`${API}/${post.id}`, {
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         id: post.id,
+//         title: 'new title',
+//         body: 'new data updated'
+//       })
+//     })
+//       .then(function (response) {
+//         return response.json()
+//       })
+//       .then(function (data) {
+//         setPosts(posts.map((item) => (item.id === post.id ? data : item)))
+//         console.log(data)
+//       })
+//       .catch(function (error) {
+//         console.error(error)
+//       })
+//   }
+
+//   // Deleting the Post
+//   const deletePost = async (id) => {
+//     try {
+//       await fetch(`${API}/${id}`, {
+//         method: "DELETE",
+//       });
+
+//       setPosts(posts.filter((post) => post.id !== id));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   return (
+//     <div style={{ padding: '20px' }}>
+//       <h1>Fetch API with React</h1>
+//       <div>
+//         <input
+//           value={title}
+//           onChange={(e) => setTitle(e.target.value)}
+//           placeholder="Post title"
+//         />
+//         <input value={body} onChange={(e)=> setBody(e.target.value)}
+//         placeholder='post body'
+//         />
+
+//         <button onClick={addPost}>Add post</button>
+//       </div>
+
+//       {/* Reads the posts */}
+//       <ul>
+//         {posts.map((post) => (
+//           <li key={post.id} style={{ marginBottom: '20px' }}>
+//             <strong>{post.title}</strong>
+//             <p>{post.body}</p>
+//             <button onClick={() => updatePost(post)} style={{ marginRight: '10px' }}>
+//               Update title
+//             </button>
+//             <button onClick={() => deletePost(post.id)}>Delete</button>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+//event handling
+
+// import React from 'react'
+
+// const App = () => {
+//   const handleClick = function (){
+//     alert("button clicked")
+//   }
+//   return (
+//     <>
+//       <button onClick={handleClick}>Click Me</button>
+//     </>
+//   )
+// }
+
+// export default App
+
+
+//onChange and onSubmit event
+
+import React, { useState } from 'react'
 
 const App = () => {
-  const [posts, setPosts] = useState([])
-  const [title, setTitle] = useState('')
-  const [body, setBody] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const getPosts = async () => {
-    try {
-      const response = await fetch(API)
-      const data = await response.json()
-      setPosts(data.slice(0, 10))
-    } catch (error) {
-      console.error(error)
-    }
+  function handleSubmitform(e){
+    e.preventDefault();
+    alert("Form Successfully Submitted!")
+    // Reset form
+    setName('')
+    setEmail('')
+    setPassword('')
   }
-
-  useEffect(() => {
-    getPosts()
-  }, [])
-
-  const addPost = async () => {
-    if (!title) {
-      return
-    }
-
-    try {
-      const response = await fetch(API, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          title,
-         body
-        })
-      })
-
-      const data = await response.json()
-      setPosts([data, ...posts])
-      setTitle('')
-      setBody('')
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  // performing update "PUT"
-  const updatePost = (post) => {
-    fetch(`${API}/${post.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: post.id,
-        title: 'new title',
-        body: 'new data updated'
-      })
-    })
-      .then(function (response) {
-        return response.json()
-      })
-      .then(function (data) {
-        setPosts(posts.map((item) => (item.id === post.id ? data : item)))
-        console.log(data)
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
-  }
-
-  // Deleting the Post
-  const deletePost = async (id) => {
-    try {
-      await fetch(`${API}/${id}`, {
-        method: "DELETE",
-      });
-
-      setPosts(posts.filter((post) => post.id !== id));
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Fetch API with React</h1>
-      <div>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Post title"
-        />
-        <input value={body} onChange={(e)=> setBody(e.target.value)}
-        placeholder='post body'
-        />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+      <form
+        onSubmit={handleSubmitform}
+        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md grid gap-4"
+      >
+        <h2 className="text-2xl font-semibold text-gray-800 text-center">Sign up</h2>
 
-        <button onClick={addPost}>Add post</button>
-      </div>
+        <label className="flex flex-col">
+          <span className="text-sm text-gray-600 mb-1">Name</span>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          />
+        </label>
 
-      {/* Reads the posts */}
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id} style={{ marginBottom: '20px' }}>
-            <strong>{post.title}</strong>
-            <p>{post.body}</p>
-            <button onClick={() => updatePost(post)} style={{ marginRight: '10px' }}>
-              Update title
-            </button>
-            <button onClick={() => deletePost(post.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+        <label className="flex flex-col">
+          <span className="text-sm text-gray-600 mb-1">Email</span>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          />
+        </label>
+
+        <label className="flex flex-col">
+          <span className="text-sm text-gray-600 mb-1">Password</span>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          />
+        </label>
+
+        <button
+          type="submit"
+          className="mt-2 bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition-colors"
+        >
+          Submit
+        </button>
+
+      </form>
     </div>
   )
 }
 
 export default App
-

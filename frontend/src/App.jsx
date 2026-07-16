@@ -235,72 +235,87 @@
 
 //onChange and onSubmit event
 
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
+
+// const App = () => {
+//   const [name, setName] = useState('')
+//   const [email, setEmail] = useState('')
+//   const [password, setPassword] = useState('')
+
+//   function handleSubmitform(e){
+//     e.preventDefault(); // it doesn't want the page to reload in react applications
+//     alert("Form Successfully Submitted!")
+//     // Reset form
+//     setName('')
+//     setEmail('')
+//     setPassword('')
+//   }
+
+//   return (
+//     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+//       <form
+//         onSubmit={handleSubmitform}
+//         className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md grid gap-4"
+//       >
+//         <h2 className="text-2xl font-semibold text-gray-800 text-center">Sign up</h2>
+
+//         <label className="flex flex-col">
+//           <span className="text-sm text-gray-600 mb-1">Name</span>
+//           <input
+//             type="text"
+//             placeholder="Enter your name"
+//             value={name}
+//             onChange={(e) => setName(e.target.value)}
+//             className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
+//           />
+//         </label>
+
+//         <label className="flex flex-col">
+//           <span className="text-sm text-gray-600 mb-1">Email</span>
+//           <input
+//             type="email"
+//             placeholder="you@example.com"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
+//           />
+//         </label>
+
+//         <label className="flex flex-col">
+//           <span className="text-sm text-gray-600 mb-1">Password</span>
+//           <input
+//             type="password"
+//             placeholder="Enter your password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
+//           />
+//         </label>
+
+//         <button
+//           type="submit"
+//           className="mt-2 bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition-colors"
+//         >
+//           Submit
+//         </button>
+
+//       </form>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+import React from 'react'
 
 const App = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  function handleSubmitform(e){
-    e.preventDefault();
-    alert("Form Successfully Submitted!")
-    // Reset form
-    setName('')
-    setEmail('')
-    setPassword('')
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
-      <form
-        onSubmit={handleSubmitform}
-        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md grid gap-4"
-      >
-        <h2 className="text-2xl font-semibold text-gray-800 text-center">Sign up</h2>
-
-        <label className="flex flex-col">
-          <span className="text-sm text-gray-600 mb-1">Name</span>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
-          />
-        </label>
-
-        <label className="flex flex-col">
-          <span className="text-sm text-gray-600 mb-1">Email</span>
-          <input
-            type="email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
-          />
-        </label>
-
-        <label className="flex flex-col">
-          <span className="text-sm text-gray-600 mb-1">Password</span>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300"
-          />
-        </label>
-
-        <button
-          type="submit"
-          className="mt-2 bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition-colors"
-        >
-          Submit
-        </button>
-
-      </form>
-    </div>
+    <>
+      <AppRoute />
+      <Outlet />
+       {/* Outlet is a place holder that helps react where to display the math child route */}
+    </>
   )
 }
 

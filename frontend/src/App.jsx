@@ -307,18 +307,66 @@
 // export default App
 
 
-import React from 'react'
-import AppRoute from './routes/AppRoute'
-// import { Outlet } from 'react-router-dom'
 
-const App = () => {
-  return (
-    <>
-    <AppRoute />
-     
-      
-    </>
-  )
-}
+//Using axios CRUD operations
 
-export default App
+// import React, { useEffect } from 'react'
+// import axios from 'axios'
+
+// const App = () => {
+
+//   //get requests
+//   axios.get("https://jsonplaceholder.typicode.com/posts")
+//   .then(response)=>{
+//     console.log((response.data)
+//   )
+// }
+// .catch(error)=>{
+//   console.log(error)
+// }
+
+// useEffect(()=>{
+
+//   axios.get("https://jsonplaceholder.typicode.com/posts")
+//   .then((response)=>{
+//     console.log(response.data)
+//   })
+//   .catch((err)=>{
+//     console.log(err)
+//   })
+// },[])
+
+// //post  method 
+// axios.post("https://jsonplaceholder.typicode.com/posts", {
+//   title: "React",
+//   body: "axios example performing in react",
+//   userId: 1
+// })
+//   .then((response) => {
+//     console.log(response.data)
+//   })
+
+// // put (Update)
+// axios.put("https://jsonplaceholder.typicode.com/posts/1", {
+//   title: "next.js",
+//   body: "axios example performing in next.js",
+//   userId: 1
+// })
+//   .then((response) => {
+//     console.log(response.data)
+//   })
+
+//   axios.delete("https://jsonplaceholder.typicode.com/posts/1")
+//   .then((response)=>{
+//     console.log("Data deleted successfully")
+//   })
+ 
+//   return (
+//     <>
+//       <h1>Didn't get data</h1>
+//     </>
+//   )
+// }
+
+// export default App
+

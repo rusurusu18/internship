@@ -308,13 +308,15 @@
 
 
 import React from 'react'
+import AppRoute from './routes/AppRoute'
+// import { Outlet } from 'react-router-dom'
 
 const App = () => {
   return (
     <>
-      <AppRoute />
-      <Outlet />
-       {/* Outlet is a place holder that helps react where to display the math child route */}
+    <AppRoute />
+     
+      
     </>
   )
 }

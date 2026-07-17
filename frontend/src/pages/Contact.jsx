@@ -1,11 +1,14 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import { Outlet } from "react-router-dom";
 
 const Contact = () => {
   return (
     <>
       <Navbar />
-      <h1>Hello Contact Us</h1>
+      <h1>Hello contact us</h1>
+      
+      
     </>
   )
 }

@@ -1,22 +1,19 @@
 import API from './api.js'
 
-//get request
-
-export const getProducts() =>{
-API.get("/products")
+// get request
+export const getProducts = () => {
+    return API.get('/products')
 }
 
-//post requests
-export const createProducts=(product)=>{
-    API.post("/products",products)
-
+// post request
+export const createProducts = (product) => {
+    return API.post('/products', product)
 }
 
-export const updateProducts=(id,product)=>{
-    API.put('/products/${id}',product)
-
+export const updateProducts = (id, product) => {
+    return API.put(`/products/${id}`, product)
 }
 
-export const deleteProduct=(id)=>{
-API.delete('/products/${id}');
+export const deleteProduct = (id) => {
+    return API.delete(`/products/${id}`)
 }

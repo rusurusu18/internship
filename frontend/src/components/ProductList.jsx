@@ -8,8 +8,6 @@ const ProductList = (products, onDelete, onEdit) => {
   return (
     <>
 
-
-
      { products.map((products)=>(
         <div className='card'>
           <h2>product name</h2>
@@ -25,7 +23,7 @@ const ProductList = (products, onDelete, onEdit) => {
           </div>
 
         </div>
-      ));
+      ))
       }
     </>
   )

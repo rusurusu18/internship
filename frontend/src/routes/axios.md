@@ -23,7 +23,7 @@ axios.get("url")
 import axios from 'axios'
 
 const API = axios.create({
-    // when learning (baseURL:"https://localhost:3000"
+    // when learning (baseURL:"https://localhost:3000")
     baseURL:import.meta.url.baseURL
 })
 

@@ -6,6 +6,7 @@ const ProductForm = () => {
     function producform({addproduct}){
         const[name,setName]=useState("")
         const[price,setPrice]=useState("")
+        
     }
     const handleSubmit=(e)=>{
         e.preventDefault();

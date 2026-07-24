@@ -370,54 +370,70 @@
 
 // export default App
 
+// import React from 'react'
+// import AppRoute from './routes/AppRoute'
+// import { getProducts, updateProducts, createProducts, deleteProduct } from './services/productService'
+// import ProductForm from './components/ProductForm'
+// import ProductList from './components/ProductList'
+
+// const App = () => {
+//   const [products, setProducts]=useState([])
+//   const [editingProduct, setEditingProduct] = useState(null)
+
+//   const fetchProducts = async() =>{
+//       const response = await getProducts()
+//       setProducts(response.data)
+//     }
+
+//     useEffect(()=>{
+//       fetchProducts();
+//     },[])
+
+//     //product add
+//     const addProduct = async(product)=>{
+//       await createProducts(product)
+//       fetchProducts();
+//     }
+
+//     //update the existing products
+//     const updateExisting= async(IdleDeadline,product)=>{
+//       await updateProducts(id , product)
+//       setEditingProduct(null)
+//       fetchProducts()
+//     }
+
+//     // remove product
+
+//     const removeProduct= async (id) =>{
+//       await deleteProduct(id)
+//       fetchProducts()
+//     }
+
+//   return (
+//     <>
+//     <h1>Product crud operations using axios</h1>
+//     <ProductForm addProduct={addProduct} editingProduct={editingProduct} updateProducts={updateExisting}  />
+//     <ProductList products={products} onDelete={removeProduct} onEdit={setEditingProduct} />
+
+//     {/* <AppRoute /> */}
+      
+//     </>
+//   )
+// }
+
+// export default App
+
+
 import React from 'react'
-import AppRoute from './routes/AppRoute'
-import { getProducts, updateProducts, createProducts, deleteProduct } from './services/productService'
-import ProductForm from './components/ProductForm'
-import ProductList from './components/ProductList'
+import Toogle from './components/Toogle'
+import User from './components/User'
 
 const App = () => {
-  const [products, setProducts]=useState([])
-  const [editingProduct, setEditingProduct] = useState(null)
-
-  const fetchProducts = async() =>{
-      const response = await getProducts()
-      setProducts(response.data)
-    }
-
-    useEffect(()=>{
-      fetchProducts();
-    },[])
-
-    //product add
-    const addProduct = async(product)=>{
-      await createProducts(product)
-      fetchProducts();
-    }
-
-    //update the existing products
-    const updateExisting= async(IdleDeadline,product)=>{
-      await updateProducts(id , product)
-      setEditingProduct(null)
-      fetchProducts()
-    }
-
-    // remove product
-
-    const removeProduct= async (id) =>{
-      await deleteProduct(id)
-      fetchProducts()
-    }
-
   return (
-    <>
-    <h1>Product crud operations using axios</h1>
-    <ProductForm addProduct={addProduct} editingProduct={editingProduct} updateProducts={updateExisting}  />
-    <ProductList products={products} onDelete={removeProduct} onEdit={setEditingProduct} />
-
-    {/* <AppRoute /> */}
-      
-    </>
+    <div>
+      <Toogle />
+      <User />
+    </div>
   )
 }
 
